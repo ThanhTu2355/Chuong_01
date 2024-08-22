@@ -17,6 +17,7 @@ namespace BT01
         DataTable tblKhoa = new DataTable("KHOA");
         DataTable tblSinhVien = new DataTable("SINHVIEN");
         DataTable tblKetQua = new DataTable("KETQUA");
+        int stt = -1;
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace BT01
             TaoCauTrucCacBang();
             MocNoiQuanHeCacBang();
             NhapDuLieuCacBang();
+            KhoiTaoComboKhoa();
+            btnDau.PerformClick();
         }
 
         private void TaoCauTrucCacBang()
@@ -77,7 +80,9 @@ namespace BT01
         }
         private void NhapDuLieuCacBang()
         {
-
+            NhapLieu_tblKhoa();
+            NhapLieu_tblSinhVien();
+            NhapLieu_tblKetQua();
         }
         private void NhapLieu_tblKhoa()
         {
@@ -103,7 +108,7 @@ namespace BT01
             foreach (string ChuoiSV in MangSV)
             {
                 //Tach Chuoi_SV thanh cac thanh phan tuong ung voi cac cot trong tblSinhVien
-                string[] MangThanhPhan = ChuoiSV.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] MangThanhPhan = ChuoiSV.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
                 //Tao mot dong moi co cau truc giong voi cau truc cua mot dong trong tblSinhVien
                 DataRow rsv = tblSinhVien.NewRow();
                 //Gan gia tri cho cac cot cua dong moi tao ra
@@ -129,6 +134,53 @@ namespace BT01
                 //Them dong vua tao vao tblKetQua
                 tblKetQua.Rows.Add(rkq);
             }
+        }
+        private void KhoiTaoComboKhoa()
+        {
+            cboMaKhoa.DisplayMember = "TenKH";
+            cboMaKhoa.ValueMember = "MaKH";
+            cboMaKhoa.DataSource = tblKhoa;
+        }
+        private void GanDuLieu(int stt)
+        {
+            //lay dong du lieu thu stt trong tblsinhVien
+            DataRow rsv = tblSinhVien.Rows[stt];
+            txtMaSV.Text = rsv["MaSV"].ToString();
+            txtHoSV.Text = rsv["HoSV"].ToString();
+            txtTenSV.Text = rsv["TenSV"].ToString();
+            chkPhai.Checked = (Boolean)rsv["Phai"];
+            dtpNgaySinh.Text = rsv["NgaySinh"].ToString();
+            txtNoiSinh.Text = rsv["NoiSinh"].ToString();
+            cboMaKhoa.SelectedValue = rsv["MaKH"].ToString();
+            txtHocbong.Text = rsv["HocBong"].ToString();
+            //the hien so thu tu mau tin hien hanh
+            lblSTT.Text = (stt + 1) + "/" + tblSinhVien.Rows.Count;
+        }
+
+        private void btnDau_Click(object sender, EventArgs e)
+        {
+            stt = 0;
+            GanDuLieu(stt);
+        }
+
+        private void btnCuoi_Click(object sender, EventArgs e)
+        {
+            stt = tblSinhVien.Rows.Count - 1;
+            GanDuLieu(stt);
+        }
+
+        private void btnTruoc_Click(object sender, EventArgs e)
+        {
+            if (stt == 0) return;
+            stt --;
+            GanDuLieu(stt);
+        }
+
+        private void btnSau_Click(object sender, EventArgs e)
+        {
+            if(stt ==tblSinhVien.Rows.Count-1) return;
+            stt++;
+            GanDuLieu(stt);
         }
     }
 }
