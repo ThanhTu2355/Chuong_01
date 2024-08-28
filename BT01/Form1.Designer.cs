@@ -61,7 +61,7 @@ namespace BT01
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(32, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 24);
+            this.label1.Size = new System.Drawing.Size(48, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "MaSV";
             // 
@@ -69,7 +69,8 @@ namespace BT01
             // 
             this.txtMaSV.Location = new System.Drawing.Point(122, 37);
             this.txtMaSV.Name = "txtMaSV";
-            this.txtMaSV.Size = new System.Drawing.Size(260, 32);
+            this.txtMaSV.ReadOnly = true;
+            this.txtMaSV.Size = new System.Drawing.Size(260, 27);
             this.txtMaSV.TabIndex = 1;
             // 
             // label2
@@ -77,7 +78,7 @@ namespace BT01
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(32, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 24);
+            this.label2.Size = new System.Drawing.Size(80, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Họ tên SV";
             // 
@@ -85,22 +86,22 @@ namespace BT01
             // 
             this.txtHoSV.Location = new System.Drawing.Point(122, 68);
             this.txtHoSV.Name = "txtHoSV";
-            this.txtHoSV.Size = new System.Drawing.Size(159, 32);
-            this.txtHoSV.TabIndex = 1;
+            this.txtHoSV.Size = new System.Drawing.Size(159, 27);
+            this.txtHoSV.TabIndex = 2;
             // 
             // txtTenSV
             // 
             this.txtTenSV.Location = new System.Drawing.Point(291, 68);
             this.txtTenSV.Name = "txtTenSV";
-            this.txtTenSV.Size = new System.Drawing.Size(91, 32);
-            this.txtTenSV.TabIndex = 2;
+            this.txtTenSV.Size = new System.Drawing.Size(91, 27);
+            this.txtTenSV.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(32, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 24);
+            this.label3.Size = new System.Drawing.Size(81, 19);
             this.label3.TabIndex = 0;
             this.label3.Text = "Ngày Sinh";
             // 
@@ -110,7 +111,7 @@ namespace BT01
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgaySinh.Location = new System.Drawing.Point(122, 137);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(260, 32);
+            this.dtpNgaySinh.Size = new System.Drawing.Size(260, 27);
             this.dtpNgaySinh.TabIndex = 4;
             this.dtpNgaySinh.Value = new System.DateTime(2005, 11, 1, 0, 0, 0, 0);
             // 
@@ -119,7 +120,7 @@ namespace BT01
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(32, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 24);
+            this.label4.Size = new System.Drawing.Size(69, 19);
             this.label4.TabIndex = 0;
             this.label4.Text = "Nơi Sinh";
             // 
@@ -127,15 +128,15 @@ namespace BT01
             // 
             this.txtNoiSinh.Location = new System.Drawing.Point(122, 168);
             this.txtNoiSinh.Name = "txtNoiSinh";
-            this.txtNoiSinh.Size = new System.Drawing.Size(260, 32);
-            this.txtNoiSinh.TabIndex = 1;
+            this.txtNoiSinh.Size = new System.Drawing.Size(260, 27);
+            this.txtNoiSinh.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(32, 203);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 24);
+            this.label5.Size = new System.Drawing.Size(44, 19);
             this.label5.TabIndex = 0;
             this.label5.Text = "Khoa";
             // 
@@ -144,15 +145,15 @@ namespace BT01
             this.cboMaKhoa.FormattingEnabled = true;
             this.cboMaKhoa.Location = new System.Drawing.Point(122, 199);
             this.cboMaKhoa.Name = "cboMaKhoa";
-            this.cboMaKhoa.Size = new System.Drawing.Size(260, 32);
-            this.cboMaKhoa.TabIndex = 5;
+            this.cboMaKhoa.Size = new System.Drawing.Size(260, 27);
+            this.cboMaKhoa.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(32, 234);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 24);
+            this.label6.Size = new System.Drawing.Size(77, 19);
             this.label6.TabIndex = 0;
             this.label6.Text = "Học bổng";
             // 
@@ -160,15 +161,15 @@ namespace BT01
             // 
             this.txtHocbong.Location = new System.Drawing.Point(122, 230);
             this.txtHocbong.Name = "txtHocbong";
-            this.txtHocbong.Size = new System.Drawing.Size(260, 32);
-            this.txtHocbong.TabIndex = 1;
+            this.txtHocbong.Size = new System.Drawing.Size(260, 27);
+            this.txtHocbong.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(32, 265);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 24);
+            this.label7.Size = new System.Drawing.Size(86, 19);
             this.label7.TabIndex = 0;
             this.label7.Text = "Tổng điểm";
             // 
@@ -176,8 +177,8 @@ namespace BT01
             // 
             this.txtTongDiem.Location = new System.Drawing.Point(122, 261);
             this.txtTongDiem.Name = "txtTongDiem";
-            this.txtTongDiem.Size = new System.Drawing.Size(260, 32);
-            this.txtTongDiem.TabIndex = 1;
+            this.txtTongDiem.Size = new System.Drawing.Size(260, 27);
+            this.txtTongDiem.TabIndex = 8;
             // 
             // btnDau
             // 
@@ -186,7 +187,7 @@ namespace BT01
             this.btnDau.Location = new System.Drawing.Point(32, 314);
             this.btnDau.Name = "btnDau";
             this.btnDau.Size = new System.Drawing.Size(75, 33);
-            this.btnDau.TabIndex = 6;
+            this.btnDau.TabIndex = 9;
             this.btnDau.Text = "Đầu";
             this.btnDau.UseVisualStyleBackColor = true;
             this.btnDau.Click += new System.EventHandler(this.btnDau_Click);
@@ -198,7 +199,7 @@ namespace BT01
             this.btnTruoc.Location = new System.Drawing.Point(107, 314);
             this.btnTruoc.Name = "btnTruoc";
             this.btnTruoc.Size = new System.Drawing.Size(75, 33);
-            this.btnTruoc.TabIndex = 6;
+            this.btnTruoc.TabIndex = 10;
             this.btnTruoc.Text = "Trước";
             this.btnTruoc.UseVisualStyleBackColor = true;
             this.btnTruoc.Click += new System.EventHandler(this.btnTruoc_Click);
@@ -210,7 +211,7 @@ namespace BT01
             this.btnSau.Location = new System.Drawing.Point(233, 314);
             this.btnSau.Name = "btnSau";
             this.btnSau.Size = new System.Drawing.Size(75, 33);
-            this.btnSau.TabIndex = 6;
+            this.btnSau.TabIndex = 11;
             this.btnSau.Text = "Sau";
             this.btnSau.UseVisualStyleBackColor = true;
             this.btnSau.Click += new System.EventHandler(this.btnSau_Click);
@@ -222,7 +223,7 @@ namespace BT01
             this.btnCuoi.Location = new System.Drawing.Point(308, 314);
             this.btnCuoi.Name = "btnCuoi";
             this.btnCuoi.Size = new System.Drawing.Size(75, 33);
-            this.btnCuoi.TabIndex = 6;
+            this.btnCuoi.TabIndex = 12;
             this.btnCuoi.Text = "Cuối";
             this.btnCuoi.UseVisualStyleBackColor = true;
             this.btnCuoi.Click += new System.EventHandler(this.btnCuoi_Click);
@@ -234,9 +235,10 @@ namespace BT01
             this.btnThem.Location = new System.Drawing.Point(32, 353);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(86, 35);
-            this.btnThem.TabIndex = 6;
+            this.btnThem.TabIndex = 13;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnHuy
             // 
@@ -245,9 +247,10 @@ namespace BT01
             this.btnHuy.Location = new System.Drawing.Point(120, 353);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(86, 35);
-            this.btnHuy.TabIndex = 6;
+            this.btnHuy.TabIndex = 14;
             this.btnHuy.Text = "Huỷ";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnGhi
             // 
@@ -256,9 +259,10 @@ namespace BT01
             this.btnGhi.Location = new System.Drawing.Point(208, 353);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(86, 35);
-            this.btnGhi.TabIndex = 6;
+            this.btnGhi.TabIndex = 15;
             this.btnGhi.Text = "Ghi";
             this.btnGhi.UseVisualStyleBackColor = true;
+            this.btnGhi.Click += new System.EventHandler(this.btnGhi_Click);
             // 
             // btnKhong
             // 
@@ -267,16 +271,17 @@ namespace BT01
             this.btnKhong.Location = new System.Drawing.Point(296, 353);
             this.btnKhong.Name = "btnKhong";
             this.btnKhong.Size = new System.Drawing.Size(86, 35);
-            this.btnKhong.TabIndex = 6;
+            this.btnKhong.TabIndex = 16;
             this.btnKhong.Text = "Không";
             this.btnKhong.UseVisualStyleBackColor = true;
+            this.btnKhong.Click += new System.EventHandler(this.btnKhong_Click);
             // 
             // lblSTT
             // 
             this.lblSTT.AutoSize = true;
             this.lblSTT.Location = new System.Drawing.Point(182, 321);
             this.lblSTT.Name = "lblSTT";
-            this.lblSTT.Size = new System.Drawing.Size(62, 24);
+            this.lblSTT.Size = new System.Drawing.Size(51, 19);
             this.lblSTT.TabIndex = 0;
             this.lblSTT.Text = "00/00";
             // 
@@ -292,7 +297,7 @@ namespace BT01
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 405);
             this.Controls.Add(this.chkPhai);
@@ -327,6 +332,7 @@ namespace BT01
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BT01 - Quản lý inh vien";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

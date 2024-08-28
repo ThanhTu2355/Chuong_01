@@ -60,7 +60,7 @@ namespace BT01
             //Tạo khoá chính cho tblSINHVIEN
             tblKetQua.PrimaryKey = new DataColumn[] { tblKetQua.Columns["MaSV"], tblKetQua.Columns["MaMH"] };
 
-            //Them cac DataTable vao DataSet, dungf tung lenh
+            //Them cac DataTable vao DataSet, dung tung lenh
             //ds.Tables.Add(tblKhoa);
             //ds.Tables.Add(tblSinhVien);
             //ds.Tables.Add(tblKetQua);
@@ -155,8 +155,20 @@ namespace BT01
             txtHocbong.Text = rsv["HocBong"].ToString();
             //the hien so thu tu mau tin hien hanh
             lblSTT.Text = (stt + 1) + "/" + tblSinhVien.Rows.Count;
+            //Tinh tong diem
+            txtTongDiem.Text = TongDiem(txtMaSV.Text).ToString();
         }
-
+        private double TongDiem(string msv)
+        {
+            double kq = 0;
+            Object td = tblKetQua.Compute("sum(Diem)", "MaSV='" + msv + "'");
+            //Luu y Truong hop SV khong co diem thi phuong thuc tra ve gia tri DBNull
+            if (td == DBNull.Value)
+                kq = 0;
+            else
+                kq = Convert.ToDouble(td);
+            return kq;
+        }
         private void btnDau_Click(object sender, EventArgs e)
         {
             stt = 0;
@@ -181,6 +193,109 @@ namespace BT01
             if(stt ==tblSinhVien.Rows.Count-1) return;
             stt++;
             GanDuLieu(stt);
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            txtMaSV.ReadOnly = false;
+            foreach (Control ctl in Controls)
+                if (ctl is TextBox)
+                    (ctl as TextBox).Clear();
+                else if (ctl is CheckBox)
+                    (ctl as CheckBox).Checked = true;
+                else if (ctl is ComboBox)
+                    (ctl as ComboBox).SelectedIndex = 0;
+                else if (ctl is DateTimePicker)
+                    (ctl as DateTimePicker).Value = new DateTime(2006,1,1);
+            txtMaSV.Focus();
+        }
+
+        private void btnKhong_Click(object sender, EventArgs e)
+        {
+            txtMaSV.ReadOnly = true;
+            GanDuLieu(stt);
+        }
+
+        private void btnGhi_Click(object sender, EventArgs e)
+        {
+            if(txtMaSV.ReadOnly==true)//ghi khi sua
+            {
+                //Xac dinhj dong can sua
+                DataRow rsv = tblSinhVien.Rows.Find(txtMaSV.Text);
+                //Tien hanh sua
+                rsv["HoSV"] = txtHoSV.Text;
+                rsv["TenSV"] = txtTenSV.Text;
+                rsv["Phai"] = chkPhai.Checked;
+                rsv["NgaySinh"] = dtpNgaySinh.Text;
+                rsv["NoiSinh"] = txtNoiSinh.Text;
+                rsv["MaKH"] = cboMaKhoa.SelectedValue.ToString();
+                rsv["HocBong"] = txtHocbong.Text;
+            }
+            else//ghi sau khi them
+            {
+                //Kiem tra khoa chinh co bi trung khong
+                DataRow rsv = tblSinhVien.Rows.Find(txtMaSV.Text);
+                if(rsv!=null)//Da co SV mang MaSV nay
+                {
+                    MessageBox.Show("MaSV nay bi trung, moi nhap MaSV khac");
+                    txtMaSV.Focus();
+                    return;
+                }
+                rsv = tblSinhVien.NewRow();
+                rsv["MaSV"] = txtMaSV.Text;
+                rsv["HoSV"] = txtHoSV.Text;
+                rsv["TenSV"] = txtTenSV.Text;
+                rsv["Phai"] = chkPhai.Checked;
+                rsv["NgaySinh"] = dtpNgaySinh.Text;
+                rsv["NoiSinh"] = txtNoiSinh.Text;
+                rsv["MaKH"] = cboMaKhoa.SelectedValue.ToString();
+                rsv["HocBong"] = txtHocbong.Text;
+                tblSinhVien.Rows.Add(rsv);
+                txtMaSV.ReadOnly = true;
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            //Xac dinh dong can huy => su dung ham find
+            DataRow rsv = tblSinhVien.Rows.Find(txtMaSV.Text);
+            //can kiem tra neu rsv ton tai nhung dong lien quan trong tblKetQua => khong cho xoa. Nguoc lai thi cho xoa
+            //Su dung ham GetChilRow de kiem tra nhung dong lien quan co ton tai khong. Gia tri tra ve cua ham la 1 mang
+            DataRow[] mangDongLienQuan = rsv.GetChildRows("FK_SINHVIEN_KETQUA");
+            if (mangDongLienQuan.Length > 0)//co ton tai nhung dong lien quan trong tblKetQua
+                MessageBox.Show("Khong xoa SV duoc vi da co ket qua thi");
+            else
+            {
+                DialogResult tl;
+                tl = MessageBox.Show("Xoa sinh vien nay khong", "Can than", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tl == DialogResult.Yes)
+                {
+                    rsv.Delete();
+                    btnDau.PerformClick();
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Ghi tap tin
+            //Luu y: tblSinhVien.Rows => Tap hop dong chu khong phai mang
+            //Chuyen thanh mang => ItemArry
+            //Chuyen mot mang thanh chuoi => Join
+            //Thuat toan ghi mot Database vao tep tin
+            //1. Khai bao mot mang chuoi voi moi phan tu tuong ung voi mot dong trong Database
+            //2. Duyet qua tap hop Rows cua DataTable va dua tung dong vao mang chuoi voi ham join
+            //3. Su dung phuong thuc WriteAllLine de ghi mang chuoi vao tap tin SINHVIEn.TXT
+            List<string> mangChuoiSinhVien = new List<string>();
+            foreach(DataRow rsv in tblSinhVien.Rows)
+            {
+                //Bien mang thanh chuoi
+                string chuoiDongSinhVien = string.Join("|", rsv.ItemArray);
+                //Them chuoi tren vao mangChuoiSinhVien
+                mangChuoiSinhVien.Add(chuoiDongSinhVien);
+            }
+            //Ghi mangChuoiSinhVien vao tep tin
+            File.WriteAllLines(@"..\..\..\data\sinhvien.txt",mangChuoiSinhVien);
         }
     }
 }
